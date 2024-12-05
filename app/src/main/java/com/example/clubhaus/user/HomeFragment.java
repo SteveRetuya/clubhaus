@@ -1,4 +1,4 @@
-package com.example.clubhaus.admin;
+package com.example.clubhaus.user;
 
 import android.os.Bundle;
 
@@ -12,15 +12,16 @@ import com.example.clubhaus.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link AnalyticsFragment#newInstance} factory method to
+ * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AnalyticsFragment extends Fragment {
+public class HomeFragment extends Fragment {
+
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.admin_analytics, container, false);
+        return inflater.inflate(R.layout.fragment_home, container, false);
     }
 }

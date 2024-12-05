@@ -6,7 +6,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:background="#FFFFFF"
-    tools:context=".admin.HomeFragment">
+    tools:context=".user.HomeFragment">
 
     <!-- "Home" Text at the Top -->
     <TextView

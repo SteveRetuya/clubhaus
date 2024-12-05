@@ -1,4 +1,4 @@
-package com.example.clubhaus.admin;
+package com.example.clubhaus.user;
 
 import android.os.Bundle;
 
@@ -15,13 +15,13 @@ import com.example.clubhaus.R;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class SearchFragment extends Fragment {
 
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        return inflater.inflate(R.layout.fragment_search, container, false);
     }
 }
