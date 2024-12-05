@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.clubhaus.admin.AddEventFragment;
+import com.example.clubhaus.admin.AdminHomeFragment;
 import com.example.clubhaus.admin.AnalyticsFragment;
 import com.example.clubhaus.user.ClubsFragment;
 import com.example.clubhaus.user.HomeFragment;
@@ -53,11 +54,13 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new SearchFragment(), false);
                 } else if (itemId == R.id.Clubs) {
                     loadFragment(new ClubsFragment(), false);
-                } else if (itemId == R.id.Analytics) {
+                } else if (itemId == R.id.Admin_Analytics) {
                     loadFragment(new AnalyticsFragment(), false);
-                } else if (itemId == R.id.AddEvents){
+                } else if (itemId == R.id.Admin_AddEvents){
                         loadFragment(new AddEventFragment(), false);
-                } else {
+                } else if (itemId == R.id.Admin_Home){
+                    loadFragment(new AdminHomeFragment(), false);
+                }else {
                     loadFragment(new ProfileFragment(), false);
                 }
 

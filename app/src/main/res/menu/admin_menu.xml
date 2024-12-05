@@ -2,15 +2,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item android:title="Home"
-        android:id="@+id/Home"
+        android:id="@+id/Admin_Home"
         android:icon="@drawable/home"/>
 
     <item android:title="Analytics"
-        android:id="@+id/Analytics"
+        android:id="@+id/Admin_Analytics"
         android:icon="@drawable/analytics"/>
 
     <item android:title="Add Events"
-        android:id="@+id/AddEvents"
+        android:id="@+id/Admin_AddEvents"
         android:icon="@drawable/add"/>
 
     <item android:title="Profile"
