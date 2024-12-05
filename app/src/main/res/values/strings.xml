@@ -2,9 +2,4 @@
     <string name="app_name">clubhaus</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="dashboard">DASHBOARD</string>
-    <string name="notifications">notifications</string>
-    <string name="active_users">Active Users</string>
-    <string name="yearly_events">Yearly Events</string>
-    <string name="numbers_placeholder">xxxx</string>
 </resources>
