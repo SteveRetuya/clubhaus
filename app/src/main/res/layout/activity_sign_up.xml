@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#80A570">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="192dp"
+        android:layout_height="143dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="80dp"
+        android:src="@drawable/logo" />
+
+    <TextView
+        android:id="@+id/signUpTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/logo"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="25dp"
+        android:text="Sign Up"
+        android:textSize="24sp"
+        android:textColor="#FFFFFF"
+        android:fontFamily="sans-serif-light" />
+
+    <EditText
+        android:id="@+id/nameInput"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Name"
+        android:layout_below="@id/signUpTitle"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:background="@drawable/rounded_edit_text"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/usernameInput"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Username"
+        android:layout_below="@id/nameInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_edit_text"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/birthdayInput"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Birthday"
+        android:layout_below="@id/usernameInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_edit_text"
+        android:padding="12dp" />
+
+    <EditText
+        android:id="@+id/passwordInput"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:hint="Password"
+        android:layout_below="@id/birthdayInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/rounded_edit_text"
+        android:padding="12dp"
+        android:inputType="textPassword" />
+
+    <Button
+        android:id="@+id/signUpButton"
+        android:layout_width="300dp"
+        android:layout_height="50dp"
+        android:layout_below="@id/passwordInput"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:text="Sign Up"
+        android:textColor="#FFFFFF"
+        android:background="@drawable/rounded_edit_text" />
+
+</RelativeLayout>
