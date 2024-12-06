@@ -6,4 +6,7 @@
 
     <!--Bottom Navigation Colors-->
     <color name="ButtonSelected">#80A570</color>
+
+    <color name="join">#579D39</color>
+    <color name="joined">#58D176</color>
 </resources>

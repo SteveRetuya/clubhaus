@@ -79,11 +79,12 @@
         </LinearLayout>
 
         <Button
+            android:id="@+id/join_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|left"
             android:layout_marginTop="16dp"
-            android:backgroundTint="#579D39"
+            android:backgroundTint="@color/join"
             android:minWidth="0dp"
             android:minHeight="0dp"
             android:text="Join"
