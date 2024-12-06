@@ -101,6 +101,6 @@ public class MainActivity extends AppCompatActivity {
     private String getUserRole() {
         // Fetch the user role from your app's logic (e.g., SharedPreferences or a backend API)
         // For this example, return a hardcoded role
-        return "user"; // Replace with dynamic role-fetching logic
+        return "admin"; // Replace with dynamic role-fetching logic
     }
 }
