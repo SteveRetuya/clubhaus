@@ -25,26 +25,28 @@
         android:fontFamily="sans-serif-light" />
 
     <EditText
-        android:id="@+id/nameInput"
+        android:id="@+id/emailInput"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:hint="Name"
+        android:hint="Email"
         android:layout_below="@id/signUpTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_edit_text"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:inputType="textEmailAddress"/>
 
     <EditText
         android:id="@+id/usernameInput"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:hint="Username"
-        android:layout_below="@id/nameInput"
+        android:layout_below="@id/emailInput"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_edit_text"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:inputType="text"/>
 
     <EditText
         android:id="@+id/birthdayInput"
@@ -55,7 +57,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_edit_text"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:inputType="date"/>
 
     <EditText
         android:id="@+id/passwordInput"
