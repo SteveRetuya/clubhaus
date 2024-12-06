@@ -24,7 +24,7 @@ import com.example.clubhaus.SignUpActivity;
  * Use the {@link AddEventFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AddEventFragment extends Fragment {
+public class EditEventFragment extends Fragment {
 
     Button addEvent, editEvent;
 
@@ -35,16 +35,7 @@ public class AddEventFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
 
-        View view = inflater.inflate(R.layout.fragment_add_event, container, false);
-
-        Button addButton = view.findViewById(R.id.addEventButton);
-        addButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                // Call the method in MainActivity to handle the button click
-                ((MainActivity) requireActivity()).addEventButton(v);
-            }
-        });
+        View view = inflater.inflate(R.layout.fragment_edit_event, container, false);
 
         return view;
     }

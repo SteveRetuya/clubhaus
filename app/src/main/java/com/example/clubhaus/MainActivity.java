@@ -16,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.clubhaus.admin.AddEventFragment;
 import com.example.clubhaus.admin.AdminHomeFragment;
 import com.example.clubhaus.admin.AnalyticsFragment;
+import com.example.clubhaus.admin.EditEventFragment;
 import com.example.clubhaus.user.ClubForumsFragment;
 import com.example.clubhaus.user.ClubsFragment;
 import com.example.clubhaus.user.HomeFragment;
@@ -108,5 +109,9 @@ public class MainActivity extends AppCompatActivity {
 
     public void joinButtonClubs(View view) {
         loadFragment(new ClubForumsFragment(), false);
+    }
+
+    public void addEventButton(View view){
+        loadFragment(new EditEventFragment(), false);
     }
 }
