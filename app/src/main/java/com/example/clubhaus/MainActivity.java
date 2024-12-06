@@ -3,6 +3,7 @@ package com.example.clubhaus;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 
 import androidx.activity.EdgeToEdge;
@@ -15,6 +16,7 @@ import androidx.fragment.app.FragmentTransaction;
 import com.example.clubhaus.admin.AddEventFragment;
 import com.example.clubhaus.admin.AdminHomeFragment;
 import com.example.clubhaus.admin.AnalyticsFragment;
+import com.example.clubhaus.user.ClubForumsFragment;
 import com.example.clubhaus.user.ClubsFragment;
 import com.example.clubhaus.user.HomeFragment;
 import com.example.clubhaus.user.SearchFragment;
@@ -58,11 +60,11 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new ClubsFragment(), false);
                 } else if (itemId == R.id.Admin_Analytics) {
                     loadFragment(new AnalyticsFragment(), false);
-                } else if (itemId == R.id.Admin_AddEvents){
+                } else if (itemId == R.id.Admin_AddEvents) {
                     loadFragment(new AddEventFragment(), false);
-                } else if (itemId == R.id.Admin_Home){
+                } else if (itemId == R.id.Admin_Home) {
                     loadFragment(new AdminHomeFragment(), false);
-                }else {
+                } else {
                     loadFragment(new ProfileFragment(), false);
                 }
 
@@ -102,5 +104,9 @@ public class MainActivity extends AppCompatActivity {
         // Fetch the user role from your app's logic (e.g., SharedPreferences or a backend API)
         // For this example, return a hardcoded role
         return "admin"; // Replace with dynamic role-fetching logic
+    }
+
+    public void joinButtonClubs(View view) {
+        loadFragment(new ClubForumsFragment(), false);
     }
 }
