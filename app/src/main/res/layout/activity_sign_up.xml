@@ -70,7 +70,7 @@
         android:inputType="textPassword" />
 
     <Button
-        android:id="@+id/signUpButton"
+        android:id="@+id/signUpButton_RegisterUser"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:layout_below="@id/passwordInput"

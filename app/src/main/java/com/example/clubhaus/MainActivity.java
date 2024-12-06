@@ -1,5 +1,6 @@
 package com.example.clubhaus;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
     private String userRole;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -57,7 +59,7 @@ public class MainActivity extends AppCompatActivity {
                 } else if (itemId == R.id.Admin_Analytics) {
                     loadFragment(new AnalyticsFragment(), false);
                 } else if (itemId == R.id.Admin_AddEvents){
-                        loadFragment(new AddEventFragment(), false);
+                    loadFragment(new AddEventFragment(), false);
                 } else if (itemId == R.id.Admin_Home){
                     loadFragment(new AdminHomeFragment(), false);
                 }else {
