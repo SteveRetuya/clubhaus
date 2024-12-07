@@ -17,6 +17,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 public class SignUpActivity extends AppCompatActivity {
     EditText inputEmail, inputUsername, inputBirthday, inputPassword;
@@ -42,30 +44,31 @@ public class SignUpActivity extends AppCompatActivity {
 
             String email, username, birthday, password;
 
-            email = String.valueOf(inputEmail).trim();
-            username = String.valueOf(inputUsername).trim();
-            birthday = String.valueOf(inputBirthday).trim();
-            password = String.valueOf(inputPassword).trim();
+            email = inputEmail.getText().toString().trim();
+            username = inputUsername.getText().toString().trim();
+            birthday = inputBirthday.getText().toString().trim();
+            password = inputPassword.getText().toString().trim();
 
-            if(TextUtils.isEmpty(email)){
+            if(email.isEmpty()){
                 Toast.makeText(SignUpActivity.this, "Enter email", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if(TextUtils.isEmpty(username)){
+            if(username.isEmpty()){
                 Toast.makeText(SignUpActivity.this, "Enter username", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if(TextUtils.isEmpty(birthday)){
+            if(birthday.isEmpty()){
                 Toast.makeText(SignUpActivity.this, "Enter birthday", Toast.LENGTH_SHORT).show();
                 return;
             }
 
-            if(TextUtils.isEmpty(password)){
+            if(password.isEmpty()){
                 Toast.makeText(SignUpActivity.this, "Enter password", Toast.LENGTH_SHORT).show();
                 return;
             }
+
 
             mAuth.createUserWithEmailAndPassword(email, password)
                     .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -83,6 +86,13 @@ public class SignUpActivity extends AppCompatActivity {
                             }
                         }
                     });
+
+            FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
+            DatabaseReference reference = database.getReference();
+
+            DatabaseReference newReference = reference.child(email);
+
+            newReference.setValue(new User(username, birthday, password));
 
             startActivity(intent);
         });

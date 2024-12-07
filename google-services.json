@@ -1,0 +1,30 @@
+{
+  "project_info": {
+    "project_number": "1016448292446",
+    "firebase_url": "https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "clubhaus-37b05",
+    "storage_bucket": "clubhaus-37b05.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1016448292446:android:78f5e366ecd155241306cf",
+        "android_client_info": {
+          "package_name": "com.example.clubhaus"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOrZeMbIfIR7cZ5yIu6GQFX4VAXbnh7FQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
