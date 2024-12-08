@@ -108,39 +108,48 @@
             android:textColor="@color/black"
             android:inputType="textMultiLine" />
 
-        <LinearLayout
+        <Button
+            android:id="@+id/AddEventButton"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:gravity="center"
+            android:layout_height="match_parent"
+            android:text="Add Event"
             android:layout_marginTop="16dp"
-            android:padding="16dp">
+            android:backgroundTint="@color/unselected"/>
+<!---->
+<!--        <LinearLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:orientation="vertical"-->
+<!--            android:gravity="center"-->
+<!--            android:layout_marginTop="16dp"-->
+<!--            android:padding="16dp">-->
 
-            <!-- Upload Thumbnail Box -->
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="150dp"
-                android:background="@drawable/upload_box"
-                android:gravity="center"
-                android:orientation="vertical"
-                android:clickable="true"
-                android:focusable="true">
+<!--            &lt;!&ndash; Upload Thumbnail Box &ndash;&gt;-->
+<!--            <LinearLayout-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="150dp"-->
+<!--                android:background="@drawable/upload_box"-->
+<!--                android:gravity="center"-->
+<!--                android:orientation="vertical"-->
+<!--                android:clickable="true"-->
+<!--                android:focusable="true">-->
 
-                <ImageView
-                    android:layout_width="48dp"
-                    android:layout_height="48dp"
-                    android:src="@drawable/ic_upload"
-                    android:contentDescription="Upload Icon" />
+<!--                <ImageView-->
+<!--                    android:layout_width="48dp"-->
+<!--                    android:layout_height="48dp"-->
+<!--                    android:src="@drawable/ic_upload"-->
+<!--                    android:contentDescription="Upload Icon" />-->
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:text="Add Thumbnail"
-                    android:textSize="14sp"
-                    android:textColor="@color/black"
-                    android:gravity="center" />
-            </LinearLayout>
-        </LinearLayout>
+<!--                <TextView-->
+<!--                    android:layout_width="wrap_content"-->
+<!--                    android:layout_height="wrap_content"-->
+<!--                    android:layout_marginTop="8dp"-->
+<!--                    android:text="Add Thumbnail"-->
+<!--                    android:textSize="14sp"-->
+<!--                    android:textColor="@color/black"-->
+<!--                    android:gravity="center" />-->
+<!--            </LinearLayout>-->
+<!--        </LinearLayout>-->
+
     </LinearLayout>
 </ScrollView>

@@ -9,4 +9,9 @@
 
     <color name="join">#579D39</color>
     <color name="joined">#58D176</color>
+
+    <color name="unselected">#579D39</color>
+    <color name="selected">#58D176</color>
+
+    <color name="Warning">#C02C2C</color>
 </resources>

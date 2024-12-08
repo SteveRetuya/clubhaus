@@ -6,7 +6,6 @@
     android:background="@color/white"
     android:orientation="vertical">
 
-
     <!-- Top Bar -->
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,66 +49,22 @@
 
             <Button
                 android:id="@+id/addEventButton"
-                android:layout_width="226dp"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:text="Add Event" />
+                android:text="Add an Event"
+                android:backgroundTint="@color/unselected"
+                android:textColor="@android:color/white"
+                android:paddingHorizontal="16dp" />
         </LinearLayout>
     </LinearLayout>
 
-    <!-- Event Card -->
-    <LinearLayout
+    <!-- RecyclerView for Event Cards -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recyclerViewEvents"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:background="@drawable/tab_rounded_background"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:layout_height="580dp"
+        android:layout_margin="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Car Meet"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:id="@+id/attendeesNumber"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="8dp"
-            android:text="20 Attendees"
-            android:textColor="@color/gray"
-            android:textSize="14sp" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Camp John Hay, Baguio"
-            android:textColor="@color/black"
-            android:textSize="14sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque sit amet nisl tellus. Vestibulum quis tristique tellus. Nam enim libero, vehicula vel luctus tincidunt, viverra hendrerit ex."
-            android:textColor="@color/gray"
-            android:textSize="14sp" />
-
-        <Button
-            android:id="@+id/editEventButton"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Edit Event" />
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:gravity="end"
-            android:orientation="horizontal" />
-    </LinearLayout>
 </LinearLayout>
