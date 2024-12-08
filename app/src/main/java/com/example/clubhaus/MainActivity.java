@@ -73,8 +73,11 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        // Load the default fragment (HomeFragment) initially
-        loadFragment(new HomeFragment(), true);
+        if (userRole.equalsIgnoreCase("admin")) {
+            loadFragment(new AdminHomeFragment(), true);
+        } else {
+            loadFragment(new HomeFragment(), true);
+        }
     }
 
     private void loadFragment(Fragment fragment, boolean isAppInitialize) {
@@ -91,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setupBottomNavigationMenu() {
-        if ("admin".equals(getUserRole())) {
+        if ("admin".equalsIgnoreCase(getUserRole())) {
             // Inflate admin-specific menu
             bottomNavigationView.inflateMenu(R.menu.admin_menu);
 
@@ -102,9 +105,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getUserRole() {
-        // Fetch the user role from your app's logic (e.g., SharedPreferences or a backend API)
-        // For this example, return a hardcoded role
-        return "user"; // Replace with dynamic role-fetching logic
+         return getIntent().getStringExtra("role");
     }
 
     public void joinButtonClubs(View view) {

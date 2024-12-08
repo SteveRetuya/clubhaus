@@ -63,7 +63,15 @@ public class LoginActivity extends AppCompatActivity {
 
     protected void checkPassword(String realPassword) {
         if (password.equals(realPassword)) {
+            String role;
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            if (email.equalsIgnoreCase("admin")) {
+                role = "admin";
+            } else {
+                role = "user";
+            }
+
+            intent.putExtra("role", role);
             startActivity(intent);
         } else {
             Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();
