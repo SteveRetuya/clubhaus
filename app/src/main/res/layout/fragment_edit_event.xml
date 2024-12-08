@@ -41,13 +41,14 @@
             android:layout_marginTop="16dp" />
 
         <EditText
+            android:id="@+id/editTitle"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/tab_rounded_background"
-            android:padding="12dp"
             android:hint="Enter title"
-            android:textColorHint="@color/gray"
-            android:textColor="@color/black" />
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray" />
 
         <!-- Location Field -->
         <TextView
@@ -60,13 +61,14 @@
             android:layout_marginTop="16dp" />
 
         <EditText
+            android:id="@+id/editLocation"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/tab_rounded_background"
-            android:padding="12dp"
             android:hint="Enter location"
-            android:textColorHint="@color/gray"
-            android:textColor="@color/black" />
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray" />
 
         <!-- Interest Field -->
         <TextView
@@ -79,13 +81,14 @@
             android:layout_marginTop="16dp" />
 
         <EditText
+            android:id="@+id/editInterest"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/tab_rounded_background"
-            android:padding="12dp"
             android:hint="Enter interest"
-            android:textColorHint="@color/gray"
-            android:textColor="@color/black" />
+            android:padding="12dp"
+            android:textColor="@color/black"
+            android:textColorHint="@color/gray" />
 
         <!-- Description Field -->
         <TextView
@@ -98,15 +101,16 @@
             android:layout_marginTop="16dp" />
 
         <EditText
+            android:id="@+id/editDescription"
             android:layout_width="match_parent"
             android:layout_height="150dp"
             android:background="@drawable/tab_rounded_background"
-            android:padding="12dp"
-            android:hint="Enter description"
             android:gravity="top|start"
-            android:textColorHint="@color/gray"
+            android:hint="Enter description"
+            android:inputType="textMultiLine"
+            android:padding="12dp"
             android:textColor="@color/black"
-            android:inputType="textMultiLine" />
+            android:textColorHint="@color/gray" />
 
         <Button
             android:id="@+id/AddEventButton"

@@ -1,6 +1,7 @@
 package com.example.clubhaus.admin;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +14,17 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clubhaus.MainActivity;
 import com.example.clubhaus.R;
+import com.example.clubhaus.SignUpActivity;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class AddEventFragment extends Fragment {
-
     private List<Event> eventList;
     private EventAdapter eventAdapter;
 
@@ -35,13 +41,42 @@ public class AddEventFragment extends Fragment {
         // Initialize event list and adapter
         eventList = new ArrayList<>();
 
-        eventList.add(new Event("Car Meet", "Camp John Hay", "Lorem Ipsum", 20)); // For Testing Purposes
-        eventList.add(new Event("Car Meet", "Camp John Hay", "Lorem Ipsum", 20)); // For Testing Purposes
-        eventList.add(new Event("Car Meet", "Camp John Hay", "Lorem Ipsum", 20)); // For Testing Purposes
-        eventList.add(new Event("Car Meet", "Camp John Hay", "Lorem Ipsum", 20)); // For Testing Purposes
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        DatabaseReference reference = database.getReference("events");
+        DatabaseReference newReference;
+        Event event;
 
-        eventAdapter = new EventAdapter(eventList);
-        recyclerView.setAdapter(eventAdapter);
+        for (int index = 0; index < 4; index++) {
+            event = new Event("Car Meet " + index, "Camp John Hay", "Lorem Ipsum", 20);
+            newReference = reference.child(event.getTitle());
+            newReference.setValue(event);
+        }
+
+        reference.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                String title, location, description;
+                int attendees;
+                for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
+                    title = eventSnapshot.getKey();
+                    location = eventSnapshot.child("location").getValue(String.class);
+                    description = eventSnapshot.child("description").getValue(String.class);
+                    attendees = eventSnapshot.child("attendees").getValue(Integer.class);
+                    Log.v("Tag", title);
+                    Log.v("Tag", location);
+                    Log.v("Tag", description);
+                    Log.v("Tag", attendees+"");
+                    eventList.add(new Event(title, location, description, attendees));
+                    eventAdapter = new EventAdapter(eventList);
+                    recyclerView.setAdapter(eventAdapter);
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
 
         // Set up Add Event button
         view.findViewById(R.id.addEventButton).setOnClickListener(new View.OnClickListener() {

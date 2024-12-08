@@ -12,12 +12,15 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import com.example.clubhaus.LoginActivity;
 import com.example.clubhaus.MainActivity;
 import com.example.clubhaus.R;
 import com.example.clubhaus.SignUpActivity;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +29,8 @@ import com.example.clubhaus.SignUpActivity;
  */
 public class EditEventFragment extends Fragment {
 
-    Button addEvent, editEvent;
+    EditText titleET, locationET, interestET, descriptionET;
+    Button addEventButton;
 
 
     @SuppressLint("MissingInflatedId")
@@ -34,8 +38,25 @@ public class EditEventFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
         View view = inflater.inflate(R.layout.fragment_edit_event, container, false);
+        addEventButton = view.findViewById(R.id.AddEventButton);
+
+        addEventButton.setOnClickListener(v -> {
+            FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
+            DatabaseReference reference = database.getReference("events");
+            titleET = view.findViewById(R.id.editTitle);
+            locationET = view.findViewById(R.id.editLocation);
+            interestET = view.findViewById(R.id.editInterest);
+            descriptionET = view.findViewById(R.id.editDescription);
+            String title = titleET.getText().toString().trim();
+            String location = locationET.getText().toString().trim();
+            String interest = interestET.getText().toString().trim();
+            String description = descriptionET.getText().toString().trim();
+            Event event = new Event(title, location, description, 0);
+            DatabaseReference newReference = reference.child(title);
+            newReference.setValue(event);
+            ((MainActivity) requireActivity()).editEventButton(v);
+        });
 
         return view;
     }

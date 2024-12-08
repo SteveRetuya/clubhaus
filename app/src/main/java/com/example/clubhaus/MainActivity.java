@@ -115,4 +115,9 @@ public class MainActivity extends AppCompatActivity {
     public void addEventButton(View view){
         loadFragment(new EditEventFragment(), false);
     }
+
+    public void editEventButton(View view){
+        loadFragment(new AddEventFragment(), false);
+    }
+
 }
