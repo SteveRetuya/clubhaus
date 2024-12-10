@@ -2,6 +2,8 @@ package com.example.clubhaus.admin;
 
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
+import android.app.DatePickerDialog;
+import android.app.TimePickerDialog;
 import android.content.Context;
 import android.text.InputType;
 import android.view.LayoutInflater;
@@ -18,6 +20,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.clubhaus.R;
 import com.example.clubhaus.admin.Event;
 
+import java.util.Calendar;
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
@@ -73,10 +76,49 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         locationInput.setText(event.getLocation());
         layout.addView(locationInput);
 
+        EditText interestInput = new EditText(context);
+        interestInput.setHint("Interests");
+        interestInput.setText(event.getInterests());
+        layout.addView(interestInput);
+
         EditText descriptionInput = new EditText(context);
         descriptionInput.setHint("Description");
         descriptionInput.setText(event.getDescription());
         layout.addView(descriptionInput);
+
+        // Add Date and Time Pickers
+        Button datePickerButton = new Button(context);
+        datePickerButton.setText("Pick Date");
+        layout.addView(datePickerButton);
+
+        Button timePickerButton = new Button(context);
+        timePickerButton.setText("Pick Time");
+        layout.addView(timePickerButton);
+
+        // To store selected date and time
+        final String[] selectedDate = {""};
+        final String[] selectedTime = {""};
+
+        // Show Date Picker Dialog
+        datePickerButton.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            DatePickerDialog datePickerDialog = new DatePickerDialog(context, (view1, year, month, dayOfMonth) -> {
+                selectedDate[0] = dayOfMonth + "/" + (month + 1) + "/" + year;
+                datePickerButton.setText("Date: " + selectedDate[0]);
+            }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
+            datePickerDialog.show();
+        });
+
+        // Show Time Picker Dialog
+        timePickerButton.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
+            TimePickerDialog timePickerDialog = new TimePickerDialog(context, (view12, hourOfDay, minute) -> {
+                selectedTime[0] = String.format("%02d:%02d", hourOfDay, minute);
+                timePickerButton.setText("Time: " + selectedTime[0]);
+            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+            timePickerDialog.show();
+        });
+
 
         builder.setView(layout);
 
@@ -86,6 +128,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             event.setTitle(titleInput.getText().toString());
             event.setLocation(locationInput.getText().toString());
             event.setDescription(descriptionInput.getText().toString());
+            event.setInterests(interestInput.getText().toString());
+            event.setDate(selectedDate);
+            event.setTime(selectedTime);
 //
 //            // Save updated event to Firebase
 //            String key = event.getTitle(); // Or use a unique ID
