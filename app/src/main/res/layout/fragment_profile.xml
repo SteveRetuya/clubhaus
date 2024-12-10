@@ -74,77 +74,7 @@
 
         <!-- Icons Section -->
 
-        <!-- Recent Activities -->
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="16dp"
-            android:gravity="center"
-            android:orientation="horizontal"
-            android:padding="16dp"
-            android:weightSum="3">
 
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:orientation="horizontal"
-                android:padding="16dp">
-
-                <!-- History Section -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <!-- History Icon -->
-                    <ImageView
-                        android:id="@+id/ic_history"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:contentDescription="History Icon"
-                        android:src="@drawable/ic_history" />
-                </LinearLayout>
-
-                <!-- Upcoming Section -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <!-- Upcoming Icon -->
-                    <ImageView
-                        android:id="@+id/ic_upcoming"
-                        android:layout_width="70dp"
-                        android:layout_height="70dp"
-                        android:contentDescription="Upcoming Icon"
-                        android:src="@drawable/ic_upcoming" />
-                </LinearLayout>
-
-                <!-- Your Clubs Section -->
-                <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="16dp"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <!-- Clubs Icon -->
-                    <ImageView
-                        android:id="@+id/ic_clubs"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:contentDescription="Your Clubs Icon"
-                        android:src="@drawable/ic_clubs" />
-                </LinearLayout>
-
-            </LinearLayout>
-        </LinearLayout>
 
         <TextView
             android:id="@+id/recentActivitiesLabel"
