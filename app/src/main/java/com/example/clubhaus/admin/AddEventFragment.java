@@ -62,10 +62,6 @@ public class AddEventFragment extends Fragment {
                     location = eventSnapshot.child("location").getValue(String.class);
                     description = eventSnapshot.child("description").getValue(String.class);
                     attendees = eventSnapshot.child("attendees").getValue(Integer.class);
-                    Log.v("Tag", title);
-                    Log.v("Tag", location);
-                    Log.v("Tag", description);
-                    Log.v("Tag", attendees+"");
                     eventList.add(new Event(title, location, description, attendees));
                     eventAdapter = new EventAdapter(eventList);
                     recyclerView.setAdapter(eventAdapter);

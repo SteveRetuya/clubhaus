@@ -25,10 +25,10 @@
         android:fontFamily="sans-serif" />
 
     <EditText
-        android:id="@+id/emailInput"
+        android:id="@+id/usernameEdit"
         android:layout_width="300dp"
         android:layout_height="50dp"
-        android:hint="Email/Username"
+        android:hint="Username"
         android:layout_below="@id/loginTitle"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
@@ -41,7 +41,7 @@
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:hint="Password"
-        android:layout_below="@id/emailInput"
+        android:layout_below="@id/usernameEdit"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_edit_text"

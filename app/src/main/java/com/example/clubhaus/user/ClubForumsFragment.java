@@ -6,10 +6,25 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clubhaus.MainActivity;
 import com.example.clubhaus.R;
+import com.example.clubhaus.admin.Event;
+import com.example.clubhaus.admin.EventAdapter;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -19,23 +34,47 @@ import com.example.clubhaus.R;
 
 
 public class ClubForumsFragment extends Fragment {
+    List<Event> eventList;
+    ForumsAdapter forumsAdapter;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_club_forums, container, false);
-        Button joinButton = view.findViewById(R.id.join_button);
-        joinButton.setOnClickListener(new View.OnClickListener() {
+
+        RecyclerView recyclerView = view.findViewById(R.id.recycler_view_forums);
+        recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
+
+        // Initialize event list and adapter
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        DatabaseReference reference = database.getReference("events");
+        DatabaseReference newReference;
+        Event event;
+
+//        for (int index = 0; index < 4; index++) {
+//            event = new Event("Car Meet " + index, "Camp John Hay", "Lorem Ipsum", 20);
+//            newReference = reference.child(event.getTitle());
+//            newReference.setValue(event);
+//        }
+
+        reference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
-            public void onClick(View v) {
-                if (joinButton.getText().equals("Join")) {
-                    joinButton.setBackgroundColor(getResources().getColor(R.color.joined));
-                    joinButton.setText("Joined");
-                } else {
-                    joinButton.setBackgroundColor(getResources().getColor(R.color.join));
-                    joinButton.setText("Join");
+            public void onComplete(@NonNull Task<DataSnapshot> task) {
+                String title, location, description;
+                eventList = new ArrayList<>();
+                int attendees;
+                for (DataSnapshot eventSnapshot : task.getResult().getChildren()) {
+                    title = eventSnapshot.getKey();
+                    location = eventSnapshot.child("location").getValue(String.class);
+                    description = eventSnapshot.child("description").getValue(String.class);
+                    attendees = eventSnapshot.child("attendees").getValue(Integer.class);
+                    eventList.add(new Event(title, location, description, attendees));
+                    forumsAdapter = new ForumsAdapter(eventList);
+                    recyclerView.setAdapter(forumsAdapter);
                 }
             }
         });
+
         // Inflate the layout for this fragment
         return view;
     }
