@@ -5,7 +5,6 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
-import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,12 +12,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clubhaus.R;
-import com.example.clubhaus.admin.Event;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.Calendar;
 import java.util.List;
@@ -51,6 +52,24 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         holder.btnEditEvent.setOnClickListener(v -> {
             // Handle edit button click
             editEvent(event, v);
+        });
+
+        holder.btnDeleteEvent.setOnClickListener(v -> {deleteEvent(event, v);});
+    }
+
+    private void deleteEvent(Event event, View v) {
+
+        String key = event.getTitle(); // Gets the Title of the to be deleted event
+
+        FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
+        DatabaseReference reference = database.getReference("events");
+
+        reference.child(key).removeValue().addOnCompleteListener(task -> {
+            if(task.isSuccessful()){
+                Toast.makeText(v.getContext(), "Event Deleted", Toast.LENGTH_SHORT).show();
+            } else {
+                Toast.makeText(v.getContext(), "Something went wrong.", Toast.LENGTH_SHORT).show();
+            }
         });
     }
 
@@ -160,7 +179,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
         TextView EventTitle, Attendees, Location, Description;
-        Button btnEditEvent;
+        Button btnEditEvent, btnDeleteEvent;
 
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -169,6 +188,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             Location = itemView.findViewById(R.id.Location);
             Description = itemView.findViewById(R.id.Description);
             btnEditEvent = itemView.findViewById(R.id.btnEditEvent);
+            btnDeleteEvent = itemView.findViewById(R.id.btnDeleteEvent);
         }
     }
 }

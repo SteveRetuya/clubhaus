@@ -14,31 +14,40 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:paddingBottom="8dp"
+            android:background="@color/white"
             android:elevation="4dp"
-            android:background="@color/white">
+            android:orientation="horizontal"
+            android:paddingBottom="8dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
-                android:text="ADD EVENT"
-                android:textStyle="bold"
-                android:textSize="20sp"
                 android:gravity="center"
-                android:textColor="@color/black" />
+                android:text="ADD EVENT"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                android:textStyle="bold" />
         </LinearLayout>
 
-        <!-- Title Field -->
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+        </ScrollView>
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Title"
-            android:textStyle="bold"
-            android:textSize="16sp"
             android:textColor="@color/black"
-            android:layout_marginTop="16dp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editTitle"
@@ -50,15 +59,14 @@
             android:textColor="@color/black"
             android:textColorHint="@color/gray" />
 
-        <!-- Location Field -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Location"
-            android:textStyle="bold"
-            android:textSize="16sp"
             android:textColor="@color/black"
-            android:layout_marginTop="16dp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editLocation"
@@ -70,15 +78,14 @@
             android:textColor="@color/black"
             android:textColorHint="@color/gray" />
 
-        <!-- Interest Field -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Interest"
-            android:textStyle="bold"
-            android:textSize="16sp"
             android:textColor="@color/black"
-            android:layout_marginTop="16dp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editInterest"
@@ -90,15 +97,14 @@
             android:textColor="@color/black"
             android:textColorHint="@color/gray" />
 
-        <!-- Description Field -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="Description"
-            android:textStyle="bold"
-            android:textSize="16sp"
             android:textColor="@color/black"
-            android:layout_marginTop="16dp" />
+            android:textSize="16sp"
+            android:textStyle="bold" />
 
         <EditText
             android:id="@+id/editDescription"
@@ -116,10 +122,20 @@
             android:id="@+id/AddEventButton"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:text="Add Event"
             android:layout_marginTop="16dp"
-            android:backgroundTint="@color/unselected"/>
-<!---->
+            android:backgroundTint="@color/unselected"
+            android:text="Add Event" />
+
+        <!-- Title Field -->
+
+        <!-- Location Field -->
+
+        <!-- Interest Field -->
+
+        <!-- Description Field -->
+
+
+        <!---->
 <!--        <LinearLayout-->
 <!--            android:layout_width="match_parent"-->
 <!--            android:layout_height="wrap_content"-->
