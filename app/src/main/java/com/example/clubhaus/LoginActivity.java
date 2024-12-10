@@ -3,7 +3,6 @@ package com.example.clubhaus;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,7 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.clubhaus.user.HomeFragment;
+import com.example.clubhaus.user.ForumsAdapter;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -20,8 +19,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class LoginActivity extends AppCompatActivity {
 
-    EditText emailET, passwordET;
-    String email, password;
+    EditText usernameET, passwordET;
+    String username, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,14 +36,13 @@ public class LoginActivity extends AppCompatActivity {
 
         loginButton.setOnClickListener(v -> {
             FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
-            emailET = findViewById(R.id.emailInput);
+            usernameET = findViewById(R.id.usernameEdit);
             passwordET = findViewById(R.id.passwordInput);
-            email = emailET.getText().toString().trim();
+            username = usernameET.getText().toString().trim();
             password = passwordET.getText().toString().trim();
 
             DatabaseReference reference = database.getReference("user");
-            reference.child(email);
-            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            reference.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
@@ -66,7 +64,7 @@ public class LoginActivity extends AppCompatActivity {
         if (password.equals(realPassword)) {
             String role;
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            if (email.equalsIgnoreCase("admin")) {
+            if (username.equalsIgnoreCase("admin")) {
                 role = "admin";
             } else {
                 role = "user";

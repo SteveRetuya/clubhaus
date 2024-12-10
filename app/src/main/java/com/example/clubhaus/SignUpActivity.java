@@ -30,7 +30,7 @@ public class SignUpActivity extends AppCompatActivity {
 
         // mAuth = FirebaseAuth.getInstance();
 
-        inputEmail = findViewById(R.id.emailInput);
+        inputEmail = findViewById(R.id.usernameEdit);
         inputUsername = findViewById(R.id.usernameInput);
         inputPassword = findViewById(R.id.passwordInput);
         signUpButton = findViewById(R.id.signUpButton_RegisterUser);
@@ -59,37 +59,18 @@ public class SignUpActivity extends AppCompatActivity {
                 return;
             }
 
-            /*
-            mAuth.createUserWithEmailAndPassword(email, password)
-                    .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                        @Override
-                        public void onComplete(@NonNull Task<AuthResult> task) {
-                            if (task.isSuccessful()) {
-
-                                Toast.makeText(SignUpActivity.this, "Account Created", Toast.LENGTH_SHORT).show();
-
-                            } else {
-                                // If sign in fails, display a message to the user.
-                                Toast.makeText(SignUpActivity.this, "Authentication failed.",
-                                        Toast.LENGTH_SHORT).show();
-                                return;
-                            }
-                        }
-                    });
-             */
-
             FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
-            DatabaseReference reference = database.getReference(email);
-            reference.addListenerForSingleValueEvent(new ValueEventListener() {
+            DatabaseReference reference = database.getReference("user");
+            reference.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {
                     if (snapshot.exists()) {
-                        Toast.makeText(SignUpActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SignUpActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
                     } else {
                         FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
                         DatabaseReference reference = database.getReference("user");
                         DatabaseReference newReference = reference.child(username);
-                        newReference.setValue(new User(username, password));
+                        newReference.setValue(new User(username, password, email));
                         startActivity(intent);
                     }
                 }
