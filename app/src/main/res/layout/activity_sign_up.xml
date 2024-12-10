@@ -49,23 +49,11 @@
         android:inputType="text"/>
 
     <EditText
-        android:id="@+id/birthdayInput"
-        android:layout_width="300dp"
-        android:layout_height="50dp"
-        android:hint="Birthday"
-        android:layout_below="@id/usernameInput"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="10dp"
-        android:background="@drawable/rounded_edit_text"
-        android:padding="12dp"
-        android:inputType="date"/>
-
-    <EditText
         android:id="@+id/passwordInput"
         android:layout_width="300dp"
         android:layout_height="50dp"
         android:hint="Password"
-        android:layout_below="@id/birthdayInput"
+        android:layout_below="@+id/usernameInput"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="10dp"
         android:background="@drawable/rounded_edit_text"

@@ -3,7 +3,6 @@ package com.example.clubhaus;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -11,12 +10,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.Task;
-import com.google.android.material.textfield.TextInputEditText;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -24,7 +18,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 public class SignUpActivity extends AppCompatActivity {
-    EditText inputEmail, inputUsername, inputBirthday, inputPassword;
+    EditText inputEmail, inputUsername, inputPassword;
     Button signUpButton;
     FirebaseAuth mAuth;
 
@@ -38,7 +32,6 @@ public class SignUpActivity extends AppCompatActivity {
 
         inputEmail = findViewById(R.id.emailInput);
         inputUsername = findViewById(R.id.usernameInput);
-        inputBirthday = findViewById(R.id.birthdayInput);
         inputPassword = findViewById(R.id.passwordInput);
         signUpButton = findViewById(R.id.signUpButton_RegisterUser);
 
@@ -49,7 +42,6 @@ public class SignUpActivity extends AppCompatActivity {
 
             email = inputEmail.getText().toString().trim();
             username = inputUsername.getText().toString().trim();
-            birthday = inputBirthday.getText().toString().trim();
             password = inputPassword.getText().toString().trim();
 
             if(email.isEmpty() || email.equalsIgnoreCase("admin")){
@@ -59,11 +51,6 @@ public class SignUpActivity extends AppCompatActivity {
 
             if(username.isEmpty()){
                 Toast.makeText(SignUpActivity.this, "Enter username", Toast.LENGTH_SHORT).show();
-                return;
-            }
-
-            if(birthday.isEmpty()){
-                Toast.makeText(SignUpActivity.this, "Enter birthday", Toast.LENGTH_SHORT).show();
                 return;
             }
 
@@ -91,7 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
                     });
              */
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
+            FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-3fe3c-default-rtdb.asia-southeast1.firebasedatabase.app/");
             DatabaseReference reference = database.getReference(email);
             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -100,7 +87,7 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast.makeText(SignUpActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
                     } else {
                         DatabaseReference newReference = database.getReference().child(email);
-                        newReference.setValue(new User(username, birthday, password));
+                        newReference.setValue(new User(username, password));
                         startActivity(intent);
                     }
 
