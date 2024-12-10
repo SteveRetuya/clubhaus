@@ -59,6 +59,7 @@ public class EditEventFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_edit_event, container, false);
         addEventButton = view.findViewById(R.id.AddEventButton);
 
+        urlET = view.findViewById(R.id.editURL);
         titleET = view.findViewById(R.id.editTitle);
         locationET = view.findViewById(R.id.editLocation);
         interestET = view.findViewById(R.id.editInterest);
