@@ -42,8 +42,6 @@ public class LoginActivity extends AppCompatActivity {
             password = passwordET.getText().toString().trim();
 
             DatabaseReference reference = database.getReference("user");
-            Intent intentUsername = new Intent(LoginActivity.this, ForumsAdapter.class);
-            intentUsername.putExtra("username", username);
             reference.child(username).addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {

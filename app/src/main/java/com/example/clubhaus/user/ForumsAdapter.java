@@ -50,17 +50,13 @@ public class ForumsAdapter extends RecyclerView.Adapter<ForumsAdapter.EventViewH
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
         DatabaseReference reference = database.getReference("user");
-        /*reference.addListenerForSingleValueEvent(new ValueEventListener() {
+        /*reference.child(new).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 if (snapshot.exists()) {
-                    Toast.makeText(SignUpActivity.this, "Username already exists", Toast.LENGTH_SHORT).show();
+
                 } else {
-                    FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
-                    DatabaseReference reference = database.getReference("user");
-                    DatabaseReference newReference = reference.child(username);
-                    newReference.setValue(new User(username, password, email));
-                    startActivity(intent);
+
                 }
             }
 
@@ -86,12 +82,12 @@ public class ForumsAdapter extends RecyclerView.Adapter<ForumsAdapter.EventViewH
                             holder.JoinButton.setBackgroundColor(ContextCompat.getColor(v.getContext(), R.color.joined));
                             holder.JoinButton.setText("Joined");
                             reference.child("attendees").setValue(attendeeNum + 1);
-                            holder.Attendees.setText(attendeeNum + 1 +"");
+                            holder.Attendees.setText(attendeeNum + 1 +" Attendees");
                         } else {
                             holder.JoinButton.setBackgroundColor(ContextCompat.getColor(v.getContext(), R.color.join));
                             holder.JoinButton.setText("Join");
                             reference.child("attendees").setValue(attendeeNum - 1);
-                            holder.Attendees.setText(attendeeNum - 1 +"");
+                            holder.Attendees.setText(attendeeNum - 1 +" Attendees");
                         }
                     }
 
