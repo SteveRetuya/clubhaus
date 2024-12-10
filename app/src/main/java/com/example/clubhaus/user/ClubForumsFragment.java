@@ -61,7 +61,7 @@ public class ClubForumsFragment extends Fragment {
         reference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
             public void onComplete(@NonNull Task<DataSnapshot> task) {
-                String title, location, description;
+                String title, location, description, url;
                 eventList = new ArrayList<>();
                 int attendees;
                 for (DataSnapshot eventSnapshot : task.getResult().getChildren()) {
@@ -69,7 +69,8 @@ public class ClubForumsFragment extends Fragment {
                     location = eventSnapshot.child("location").getValue(String.class);
                     description = eventSnapshot.child("description").getValue(String.class);
                     attendees = eventSnapshot.child("attendees").getValue(Integer.class);
-                    eventList.add(new Event(title, location, description, attendees));
+                    url = eventSnapshot.child("imageLink").getValue(String.class);
+                    eventList.add(new Event(title, location, description, url, attendees));
                     forumsAdapter = new ForumsAdapter(eventList);
                     recyclerView.setAdapter(forumsAdapter);
                 }

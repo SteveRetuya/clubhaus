@@ -29,7 +29,7 @@ import com.google.firebase.database.FirebaseDatabase;
  */
 public class EditEventFragment extends Fragment {
 
-    EditText titleET, locationET, interestET, descriptionET;
+    EditText titleET, locationET, interestET, descriptionET, urlET;
     Button addEventButton;
 
 
@@ -48,11 +48,13 @@ public class EditEventFragment extends Fragment {
             locationET = view.findViewById(R.id.editLocation);
             interestET = view.findViewById(R.id.editInterest);
             descriptionET = view.findViewById(R.id.editDescription);
+            urlET = view.findViewById(R.id.editURL);
             String title = titleET.getText().toString().trim();
             String location = locationET.getText().toString().trim();
             String interest = interestET.getText().toString().trim();
             String description = descriptionET.getText().toString().trim();
-            Event event = new Event(title, location, description, 0);
+            String url = urlET.getText().toString().trim();
+            Event event = new Event(title, location, description, url, 0);
             DatabaseReference newReference = reference.child(title);
             newReference.setValue(event);
             ((MainActivity) requireActivity()).editEventButton(v);

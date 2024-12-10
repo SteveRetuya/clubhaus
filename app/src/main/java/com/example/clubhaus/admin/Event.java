@@ -8,6 +8,15 @@ public class Event {
     private String[] date;
     private String[] time;
     private int attendees;
+    private String imageLink;
+
+    public Event(String title, String location, String description, String url, int attendees) {
+        this.title = title;
+        this.location = location;
+        this.description = description;
+        this.attendees = attendees;
+        imageLink = url;
+    }
 
     public Event(String title, String location, String description, int attendees) {
         this.title = title;
@@ -88,5 +97,9 @@ public class Event {
 
     public String[] getTime() {
         return time;
+    }
+
+    public String getImageLink() {
+        return imageLink;
     }
 }
