@@ -42,7 +42,8 @@ public class LoginActivity extends AppCompatActivity {
             email = emailET.getText().toString().trim();
             password = passwordET.getText().toString().trim();
 
-            DatabaseReference reference = database.getReference(email);
+            DatabaseReference reference = database.getReference("user");
+            reference.child(email);
             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(@NonNull DataSnapshot snapshot) {

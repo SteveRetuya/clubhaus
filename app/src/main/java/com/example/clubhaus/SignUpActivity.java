@@ -87,7 +87,8 @@ public class SignUpActivity extends AppCompatActivity {
                         Toast.makeText(SignUpActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
                     } else {
                         FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
-                        DatabaseReference newReference = database.getReference().child(email);
+                        DatabaseReference reference = database.getReference("user");
+                        DatabaseReference newReference = reference.child(username);
                         newReference.setValue(new User(username, password));
                         startActivity(intent);
                     }
