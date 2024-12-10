@@ -63,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new AnalyticsFragment(), false);
                 } else if (itemId == R.id.Admin_AddEvents) {
                     loadFragment(new AddEventFragment(), false);
-                } else if (itemId == R.id.Admin_Home) {
-                    loadFragment(new AdminHomeFragment(), false);
                 } else {
                     loadFragment(new ProfileFragment(), false);
                 }
@@ -74,7 +72,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         if (userRole.equalsIgnoreCase("admin")) {
-            loadFragment(new AdminHomeFragment(), true);
+            loadFragment(new AnalyticsFragment(), true);
         } else {
             loadFragment(new HomeFragment(), true);
         }
@@ -105,7 +103,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private String getUserRole() {
-         return getIntent().getStringExtra("role");
+        return getIntent().getStringExtra("role");
     }
 
     public void joinButtonClubs(View view) {
