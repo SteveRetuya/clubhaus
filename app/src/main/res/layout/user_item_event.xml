@@ -16,7 +16,7 @@
 
         <!-- Event Title -->
         <TextView
-            android:id="@+id/EventTitle"
+            android:id="@+id/user_item_EventTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Event Title"
@@ -26,16 +26,16 @@
 
         <!-- Attendee Count -->
         <TextView
-            android:id="@+id/Attendees"
+            android:id="@+id/user_item_Attendees"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="20 Attendees"
+            android:text="0 Attendees"
             android:textSize="14sp"
             android:textColor="@android:color/darker_gray" />
 
         <!-- Event Location -->
         <TextView
-            android:id="@+id/Location"
+            android:id="@+id/user_item_Location"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Camp John Hay, Baguio"
@@ -43,9 +43,31 @@
             android:textStyle="bold"
             android:textColor="@android:color/black" />
 
+        <!-- Event Date -->
+        <TextView
+            android:id="@+id/user_item_Date"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="January, 1, 2000"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp" />
+
         <!-- Event Description -->
         <TextView
-            android:id="@+id/Date"
+            android:id="@+id/user_item_Time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="12:00 PM"
+            android:textSize="14sp"
+            android:textColor="@android:color/black"
+            android:layout_marginTop="4dp"
+            android:layout_marginBottom="8dp" />
+
+        <!-- Event Description -->
+        <TextView
+            android:id="@+id/user_item_Description"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
@@ -54,43 +76,5 @@
             android:layout_marginTop="4dp"
             android:layout_marginBottom="8dp" />
 
-        <!-- Event Description -->
-        <TextView
-            android:id="@+id/Time"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Event Description -->
-        <TextView
-            android:id="@+id/Description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit."
-            android:textSize="14sp"
-            android:textColor="@android:color/black"
-            android:layout_marginTop="4dp"
-            android:layout_marginBottom="8dp" />
-
-        <!-- Edit Button -->
-        <Button
-            android:id="@+id/btnEditEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Edit Event"
-            android:backgroundTint="@color/unselected"
-            android:textColor="@android:color/white" />
-
-        <Button
-            android:id="@+id/btnDeleteEvent"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Delete Event"
-            android:backgroundTint="@color/Warning"
-            android:textColor="@android:color/white" />
     </LinearLayout>
 </androidx.cardview.widget.CardView>

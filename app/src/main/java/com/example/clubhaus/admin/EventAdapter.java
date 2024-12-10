@@ -1,10 +1,14 @@
 package com.example.clubhaus.admin;
 
+import static androidx.core.app.ActivityCompat.startActivityForResult;
+
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.TimePickerDialog;
 import android.content.Context;
+import android.content.Intent;
+import android.provider.MediaStore;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,6 +21,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.clubhaus.MainActivity;
 import com.example.clubhaus.R;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
@@ -105,20 +110,15 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         descriptionInput.setText(event.getDescription());
         layout.addView(descriptionInput);
 
-        // Add Date and Time Pickers
+        // To store selected date and time
+        final String[] selectedDate = event.getDate();
+        final String[] selectedTime = event.getTime();
+
+        // Show Date Picker Dialog
         Button datePickerButton = new Button(context);
         datePickerButton.setText("Pick Date");
         layout.addView(datePickerButton);
 
-        Button timePickerButton = new Button(context);
-        timePickerButton.setText("Pick Time");
-        layout.addView(timePickerButton);
-
-        // To store selected date and time
-        final String[] selectedDate = {""};
-        final String[] selectedTime = {""};
-
-        // Show Date Picker Dialog
         datePickerButton.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             DatePickerDialog datePickerDialog = new DatePickerDialog(context, (view1, year, month, dayOfMonth) -> {
@@ -129,6 +129,9 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         });
 
         // Show Time Picker Dialog
+        Button timePickerButton = new Button(context);
+        timePickerButton.setText("Pick Time");
+        layout.addView(timePickerButton);
         timePickerButton.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             TimePickerDialog timePickerDialog = new TimePickerDialog(context, (view12, hourOfDay, minute) -> {
@@ -137,7 +140,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
             timePickerDialog.show();
         });
-
 
         builder.setView(layout);
 
@@ -150,17 +152,6 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             event.setInterests(interestInput.getText().toString());
             event.setDate(selectedDate);
             event.setTime(selectedTime);
-//
-//            // Save updated event to Firebase
-//            String key = event.getTitle(); // Or use a unique ID
-//            databaseReference.child(key).setValue(event)
-//                    .addOnCompleteListener(task -> {
-//                        if (task.isSuccessful()) {
-//                            Toast.makeText(context, "Event updated successfully", Toast.LENGTH_SHORT).show();
-//                        } else {
-//                            Toast.makeText(context, "Error updating event", Toast.LENGTH_SHORT).show();
-//                        }
-//                    });
 
             // Notify RecyclerView to refresh the updated data
             notifyDataSetChanged();
@@ -172,6 +163,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         builder.create().show();
     }
 
+
+
     @Override
     public int getItemCount() {
         return eventList.size();
@@ -181,6 +174,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         TextView EventTitle, Attendees, Location, Description;
         Button btnEditEvent, btnDeleteEvent;
 
+        @SuppressLint("WrongViewCast")
         public EventViewHolder(@NonNull View itemView) {
             super(itemView);
             EventTitle = itemView.findViewById(R.id.EventTitle);

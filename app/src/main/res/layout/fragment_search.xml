@@ -1,29 +1,27 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="#F9F9F9"
-    tools:context=".admin.SearchFragment">
+    android:background="#F9F9F9">
 
     <!-- Title Section -->
+
+    <!-- Search Bar -->
     <TextView
         android:id="@+id/editTitle"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:gravity="center"
         android:padding="16dp"
         android:text="SEARCH"
+        android:textColor="#000"
         android:textSize="18sp"
-        android:textStyle="bold"
-        android:gravity="center"
-        android:textColor="#000" />
+        android:textStyle="bold" />
 
-    <!-- Search Bar -->
     <EditText
-        android:id="@+id/search_bar"
+        android:id="@+id/user_search_bar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="16dp"
@@ -33,9 +31,28 @@
         android:background="@drawable/rounded_background"
         android:drawablePadding="8dp"
         android:textColor="#000"
+        android:textSize="16sp"
+        android:inputType="text"/>
+
+    <TextView
+        android:id="@+id/placeholder_text"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:visibility="gone"
+        android:text="No events found"
+        android:padding="16dp"
         android:textSize="16sp" />
 
-    <!-- Category Buttons -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/search_results"
+        android:layout_width="match_parent"
+        android:layout_height="580dp"
+        android:layout_margin="8dp"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp" />
+
+    <!-- Category Buttons
     <HorizontalScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -86,7 +103,8 @@
         </LinearLayout>
     </HorizontalScrollView>
 
-    <!-- Event Card -->
+
+    Event Card
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -123,4 +141,6 @@
             android:textSize="14sp"
             android:textColor="#757575" />
     </LinearLayout>
+    -->
+
 </LinearLayout>

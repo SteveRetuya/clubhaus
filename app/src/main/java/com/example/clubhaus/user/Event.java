@@ -1,8 +1,4 @@
-package com.example.clubhaus.admin;
-
-import android.widget.ImageView;
-
-import java.util.List;
+package com.example.clubhaus.user;
 
 public class Event {
     private String title;
@@ -11,19 +7,11 @@ public class Event {
     private String interests;
     private String[] date;
     private String[] time;
-
-    private List<String> date_List;
-    private List<String> time_List;
-    private ImageView imageUrl;
+    private String imageUrl;
     private int attendees;
-    private String imageLink;
 
-    public Event(String title, String location, String description, String url, int attendees) {
-        this.title = title;
-        this.location = location;
-        this.description = description;
-        this.attendees = attendees;
-        imageLink = url;
+    public Event(){
+
     }
 
     public Event(String title, String location, String description, int attendees) {
@@ -51,17 +39,7 @@ public class Event {
         this.time = time;
     }
 
-    public Event(String title, String location, String description, int attendees, String interests, List<String> date, List<String> time) {
-        this.title = title;
-        this.location = location;
-        this.description = description;
-        this.attendees = attendees;
-        this.interests = interests;
-        this.date_List = date;
-        this.time_List = time;
-    }
-
-    public Event(String title, String location, String description, int attendees, String interests, String[] date, String[] time, ImageView imageUrl) {
+    public Event(String title, String location, String description, int attendees, String interests, String[] date, String[] time, String imageUrl) {
         this.title = title;
         this.location = location;
         this.description = description;
@@ -76,16 +54,8 @@ public class Event {
         this.attendees = attendees;
     }
 
-    public void setImageUrl(ImageView imageUrl) {
+    public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
-    }
-
-    public void setDate_List(List<String> date_List) {
-        this.date_List = date_List;
-    }
-
-    public void setTime_List(List<String> time_List) {
-        this.time_List = time_List;
     }
 
     public void setInterests(String interests) {
@@ -140,19 +110,7 @@ public class Event {
         return time;
     }
 
-    public ImageView getImageUrl() {
+    public String getImageUrl() {
         return imageUrl;
-    }
-
-    public List<String> getDate_List() {
-        return date_List;
-    }
-
-    public List<String> getTime_List() {
-        return time_List;
-    }
-
-    public String getImageLink() {
-        return imageLink;
     }
 }
