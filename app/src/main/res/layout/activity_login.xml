@@ -33,7 +33,8 @@
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_edit_text"
-        android:padding="12dp" />
+        android:padding="12dp"
+        android:inputType="textEmailAddress"/>
 
     <EditText
         android:id="@+id/passwordInput"
