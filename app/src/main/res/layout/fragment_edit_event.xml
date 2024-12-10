@@ -163,7 +163,8 @@
                     android:focusable="true"
                     android:padding="12dp"
                     android:text="Select Date"
-                    android:textColor="@color/black"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     android:textColorHint="@color/gray" />
 
                 <TextView
@@ -184,7 +185,8 @@
                     android:focusable="true"
                     android:padding="12dp"
                     android:text="Select Time"
-                    android:textColor="@color/black"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold"
                     android:textColorHint="@color/gray" />
 
                 <TextView

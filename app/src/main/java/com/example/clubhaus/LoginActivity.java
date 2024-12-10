@@ -71,6 +71,7 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             intent.putExtra("role", role);
+            intent.putExtra("displayName", username);
             startActivity(intent);
         } else {
             Toast.makeText(LoginActivity.this, "Incorrect password", Toast.LENGTH_SHORT).show();

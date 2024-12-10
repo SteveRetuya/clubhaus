@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     private FrameLayout frameLayout;
     private String userRole;
 
+    private String displayName;
+
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Fetch the user role (e.g., from SharedPreferences or passed intent)
         userRole = getUserRole();
+        displayName = getDisplayName();
 
         // Set the BottomNavigationView menu based on the user role
         setupBottomNavigationMenu();
@@ -64,8 +67,9 @@ public class MainActivity extends AppCompatActivity {
                     loadFragment(new AnalyticsFragment(), false);
                 } else if (itemId == R.id.Admin_AddEvents) {
                     loadFragment(new AddEventFragment(), false);
-                } else {
-                    loadFragment(new ProfileFragment(), false);
+                } else if (itemId == R.id.Profile){
+                    String username = getIntent().getStringExtra("displayName"); // Assume username is passed from LoginActivity
+                    loadFragment(ProfileFragment.newInstance(username), false);
                 }
 
                 return true;
@@ -103,6 +107,9 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    private String getDisplayName() {
+        return getIntent().getStringExtra("displayName");
+    }
     private String getUserRole() {
         return getIntent().getStringExtra("role");
     }

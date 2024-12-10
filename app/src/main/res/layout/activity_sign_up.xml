@@ -69,6 +69,7 @@
         android:layout_marginTop="20dp"
         android:text="Sign Up"
         android:textColor="#FFFFFF"
+        android:textStyle="bold"
         android:background="@drawable/rounded_edit_text" />
 
 </RelativeLayout>
