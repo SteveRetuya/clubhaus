@@ -72,6 +72,17 @@ public class Event {
         this.imageUrl = imageUrl;
     }
 
+    public Event(String title, String location, String description, int attendees, String interests, String[] date, String[] time, String imageUrl) {
+        this.title = title;
+        this.location = location;
+        this.description = description;
+        this.attendees = attendees;
+        this.interests = interests;
+        this.date = date;
+        this.time = time;
+        imageLink = imageUrl;
+    }
+
     public void setAttendees(int attendees) {
         this.attendees = attendees;
     }

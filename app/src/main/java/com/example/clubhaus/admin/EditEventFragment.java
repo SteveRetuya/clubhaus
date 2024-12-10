@@ -131,7 +131,7 @@ public class EditEventFragment extends Fragment {
             }
 
 
-            Event event = new Event(title, location, description, 0, interest, date, time, url);
+            Event event = new Event(title, location, description, 0, interest, date.toArray(new String[0]), time.toArray(new String[0]), url);
             DatabaseReference newReference = reference.child(title);
             newReference.setValue(event);
             ((MainActivity) requireActivity()).editEventButton(v);
