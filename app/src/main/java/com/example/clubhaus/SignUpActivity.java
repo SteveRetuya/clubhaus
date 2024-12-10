@@ -78,7 +78,7 @@ public class SignUpActivity extends AppCompatActivity {
                     });
              */
 
-            FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-3fe3c-default-rtdb.asia-southeast1.firebasedatabase.app/");
+            FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
             DatabaseReference reference = database.getReference(email);
             reference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -86,11 +86,11 @@ public class SignUpActivity extends AppCompatActivity {
                     if (snapshot.exists()) {
                         Toast.makeText(SignUpActivity.this, "Email already exists", Toast.LENGTH_SHORT).show();
                     } else {
+                        FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
                         DatabaseReference newReference = database.getReference().child(email);
                         newReference.setValue(new User(username, password));
                         startActivity(intent);
                     }
-
                 }
 
                 @Override
