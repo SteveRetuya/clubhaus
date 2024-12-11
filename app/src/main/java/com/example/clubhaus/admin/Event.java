@@ -72,14 +72,14 @@ public class Event {
         this.imageUrl = imageUrl;
     }
 
-    public Event(String title, String location, String description, int attendees, String interests, String[] date, String[] time, String imageUrl) {
+    public Event(String title, String location, String description, int attendees, String interests, List<String> date, List<String> time, String imageUrl) {
         this.title = title;
         this.location = location;
         this.description = description;
         this.attendees = attendees;
         this.interests = interests;
-        this.date = date;
-        this.time = time;
+        this.date_List = date;
+        this.time_List = time;
         imageLink = imageUrl;
     }
 

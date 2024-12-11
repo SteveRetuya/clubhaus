@@ -68,7 +68,7 @@ public class EditEventFragment extends Fragment {
         selectTimeButton = view.findViewById(R.id.timePicker);
         selectImageButton = view.findViewById(R.id.addImageButton);
         eventImage = view.findViewById(R.id.eventImage);
-        String url = urlET.getText().toString().trim();
+
 
         // Set Date Picker
         selectDateButton.setOnClickListener(v -> {
@@ -111,6 +111,8 @@ public class EditEventFragment extends Fragment {
             List<String> time = new ArrayList<>();
             time.add(selectedTime);
 
+            String url = urlET.getText().toString().trim();
+
             if(title.isEmpty()){
                 Toast.makeText(getContext(), "Enter Title", Toast.LENGTH_SHORT).show();
                 return;
@@ -132,7 +134,7 @@ public class EditEventFragment extends Fragment {
             }
 
 
-            Event event = new Event(title, location, description, 0, interest, date.toArray(new String[0]), time.toArray(new String[0]), url);
+            Event event = new Event(title, location, description, 0, interest, date, time, url);
             DatabaseReference newReference = reference.child(title);
             newReference.setValue(event);
             ((MainActivity) requireActivity()).editEventButton(v);

@@ -9,6 +9,7 @@ import android.app.TimePickerDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,8 +24,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.clubhaus.MainActivity;
 import com.example.clubhaus.R;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.Calendar;
 import java.util.List;
@@ -53,13 +57,62 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         holder.Location.setText(event.getLocation());
         holder.Description.setText(event.getDescription());
 
+        // Fetch the date_list and time_list dynamically from Firebase
+        fetchEventDateTimeList(event.getTitle(), holder.Date, holder.Time);
+
         // Set OnClickListener for btnEditEvent
         holder.btnEditEvent.setOnClickListener(v -> {
             // Handle edit button click
             editEvent(event, v);
         });
 
-        holder.btnDeleteEvent.setOnClickListener(v -> {deleteEvent(event, v);});
+        holder.btnDeleteEvent.setOnClickListener(v -> {
+            deleteEvent(event, v);
+        });
+    }
+
+    private void fetchEventDateTimeList(String eventTitle, TextView dateTextView, TextView timeTextView) {
+        DatabaseReference databaseReference = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/")
+                .getReference("events")
+                .child(eventTitle);
+
+        // Fetch both date_list and time_list from Firebase
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.exists()) {
+                    // Fetch and concatenate date_list
+                    StringBuilder dateList = new StringBuilder();
+                    if (snapshot.child("date_List").exists()) {
+                        for (DataSnapshot dateSnapshot : snapshot.child("date_List").getChildren()) {
+                            dateList.append(dateSnapshot.getValue(String.class)).append("\n");
+                        }
+                    }
+
+                    // Fetch and concatenate time_list
+                    StringBuilder timeList = new StringBuilder();
+                    if (snapshot.child("time_List").exists()) {
+                        for (DataSnapshot timeSnapshot : snapshot.child("time_List").getChildren()) {
+                            timeList.append(timeSnapshot.getValue(String.class)).append("\n");
+                        }
+                    }
+
+                    // Update TextViews
+                    dateTextView.setText(dateList.toString().trim().isEmpty() ? "No dates available" : dateList.toString().trim());
+                    timeTextView.setText(timeList.toString().trim().isEmpty() ? "No times available" : timeList.toString().trim());
+                } else {
+                    dateTextView.setText("No dates available");
+                    timeTextView.setText("No times available");
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+                dateTextView.setText("Error fetching dates");
+                timeTextView.setText("Error fetching times");
+                Log.e("FirebaseError", error.getMessage());
+            }
+        });
     }
 
     private void deleteEvent(Event event, View v) {
@@ -171,7 +224,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
     }
 
     public static class EventViewHolder extends RecyclerView.ViewHolder {
-        TextView EventTitle, Attendees, Location, Description;
+        TextView EventTitle, Attendees, Location, Description, Date, Time;
         Button btnEditEvent, btnDeleteEvent;
 
         @SuppressLint("WrongViewCast")
@@ -181,6 +234,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
             Attendees = itemView.findViewById(R.id.Attendees);
             Location = itemView.findViewById(R.id.Location);
             Description = itemView.findViewById(R.id.Description);
+            Date = itemView.findViewById(R.id.Date);
+            Time = itemView.findViewById(R.id.Time);
             btnEditEvent = itemView.findViewById(R.id.btnEditEvent);
             btnDeleteEvent = itemView.findViewById(R.id.btnDeleteEvent);
         }
