@@ -133,7 +133,7 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
     @SuppressLint("NotifyDataSetChanged")
     private void editEvent(Event event, View view) {
-        // For simplicity, open a dialog for editing event details
+        // open a dialog for editing event details
         Context context = view.getContext();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Edit Event");
