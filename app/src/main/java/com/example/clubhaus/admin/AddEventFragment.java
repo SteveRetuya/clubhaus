@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -47,12 +48,6 @@ public class AddEventFragment extends Fragment {
         DatabaseReference reference = database.getReference("events");
         DatabaseReference newReference;
         Event event;
-
-//        for (int index = 0; index < 4; index++) {
-//            event = new Event("Car Meet " + index, "Camp John Hay", "Lorem Ipsum", 20);
-//            newReference = reference.child(event.getTitle());
-//            newReference.setValue(event);
-//        }
 
         reference.addValueEventListener(new ValueEventListener() {
             @Override

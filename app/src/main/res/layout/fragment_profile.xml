@@ -38,9 +38,11 @@
                 android:id="@+id/profileImage"
                 android:layout_width="60dp"
                 android:layout_height="60dp"
-                android:src="@drawable/sample_user"
+                android:background="@drawable/circle_background"
+                android:maxWidth="60dp"
+                android:maxHeight="60dp"
                 android:scaleType="centerCrop"
-                android:background="@drawable/circle_background" />
+                android:src="@drawable/sample_user" />
 
             <!-- Profile Details -->
             <LinearLayout
@@ -60,13 +62,25 @@
                     android:textColor="#000000" />
 
                 <TextView
+                    android:id="@+id/emailTextView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:clickable="false"
+                    android:text="place@holder.com"
+                    android:textColor="#808080"
+                    android:textSize="12sp" />
+
+                <TextView
                     android:id="@+id/editProfile"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:clickable="true"
                     android:text="Edit Profile"
-                    android:textSize="12sp"
                     android:textColor="#808080"
-                    android:layout_marginTop="4dp" />
+                    android:textSize="12sp" />
+
             </LinearLayout>
         </LinearLayout>
 

@@ -9,17 +9,16 @@ import android.widget.FrameLayout;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.clubhaus.admin.AddEventFragment;
-import com.example.clubhaus.admin.AdminHomeFragment;
 import com.example.clubhaus.admin.AnalyticsFragment;
 import com.example.clubhaus.admin.EditEventFragment;
 import com.example.clubhaus.user.ClubForumsFragment;
 import com.example.clubhaus.user.ClubsFragment;
+import com.example.clubhaus.user.EditProfileFragment;
 import com.example.clubhaus.user.HomeFragment;
 import com.example.clubhaus.user.SearchFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -29,12 +28,15 @@ public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     private FrameLayout frameLayout;
     private String userRole;
+    private String username;
 
     private String displayName;
 
     @SuppressLint({"MissingInflatedId", "WrongViewCast"})
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
+        username = getIntent().getStringExtra("displayName");
 
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
@@ -126,4 +128,19 @@ public class MainActivity extends AppCompatActivity {
         loadFragment(new AddEventFragment(), false);
     }
 
+    public void editProfileButton(View view){
+        loadFragment(new EditProfileFragment(), false);
+    }
+
+    public void goBackToProfileButton(View view){
+        loadFragment(new ProfileFragment(), false);
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
 }

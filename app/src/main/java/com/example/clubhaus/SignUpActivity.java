@@ -70,7 +70,7 @@ public class SignUpActivity extends AppCompatActivity {
                         FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
                         DatabaseReference reference = database.getReference("user");
                         DatabaseReference newReference = reference.child(username);
-                        newReference.setValue(new User(username, password, email));
+                        newReference.setValue(new User(username, password, email, ""));
                         startActivity(intent);
                     }
                 }

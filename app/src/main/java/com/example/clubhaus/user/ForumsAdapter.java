@@ -53,26 +53,6 @@ public class ForumsAdapter extends RecyclerView.Adapter<ForumsAdapter.EventViewH
                 .load(event.getImageLink())
                 .into(holder.picIV);
 
-        FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
-        DatabaseReference reference = database.getReference("user");
-        /*reference.child(new).addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                if (snapshot.exists()) {
-
-                } else {
-
-                }
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError error) {
-                startActivity(intent);
-            }
-        });
-
-         */
-
         holder.JoinButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

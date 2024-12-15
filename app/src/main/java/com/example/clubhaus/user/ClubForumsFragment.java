@@ -49,14 +49,6 @@ public class ClubForumsFragment extends Fragment {
 
         FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
         DatabaseReference reference = database.getReference("events");
-        DatabaseReference newReference;
-        Event event;
-
-//        for (int index = 0; index < 4; index++) {
-//            event = new Event("Car Meet " + index, "Camp John Hay", "Lorem Ipsum", 20);
-//            newReference = reference.child(event.getTitle());
-//            newReference.setValue(event);
-//        }
 
         reference.get().addOnCompleteListener(new OnCompleteListener<DataSnapshot>() {
             @Override
