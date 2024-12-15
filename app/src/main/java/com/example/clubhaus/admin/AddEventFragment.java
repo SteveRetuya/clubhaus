@@ -19,9 +19,11 @@ import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.GenericTypeIndicator;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AddEventFragment extends Fragment {
@@ -55,14 +57,22 @@ public class AddEventFragment extends Fragment {
         reference.addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String title, location, description;
+                String title, location, description, interest, url;
+                List<String> date, time;
                 int attendees;
+
+                GenericTypeIndicator<List<String>> listType = new GenericTypeIndicator<List<String>>() {};
+
                 for (DataSnapshot eventSnapshot : snapshot.getChildren()) {
                     title = eventSnapshot.getKey();
                     location = eventSnapshot.child("location").getValue(String.class);
                     description = eventSnapshot.child("description").getValue(String.class);
                     attendees = eventSnapshot.child("attendees").getValue(Integer.class);
-                    eventList.add(new Event(title, location, description, attendees));
+                    interest = eventSnapshot.child("interests").getValue(String.class);
+                    date = eventSnapshot.child("date_List").getValue(listType);
+                    time = eventSnapshot.child("time_List").getValue(listType);
+                    url = eventSnapshot.child("imageLink").getValue(String.class);
+                    eventList.add(new Event(title, location, description, attendees, interest, date, time, url));
                     eventAdapter = new EventAdapter(eventList);
                     recyclerView.setAdapter(eventAdapter);
                 }
@@ -83,12 +93,5 @@ public class AddEventFragment extends Fragment {
         });
 
         return view;
-    }
-
-    private void addEvent() {
-        // Create a new sample event
-        Event newEvent = new Event("New Event", "New Location", "New Description", 0);
-        eventList.add(newEvent);
-        eventAdapter.notifyDataSetChanged();
     }
 }

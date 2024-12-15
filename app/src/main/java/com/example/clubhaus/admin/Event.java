@@ -103,6 +103,10 @@ public class Event {
         this.interests = interests;
     }
 
+    public void setImageLink(String imageLink) {
+        this.imageLink = imageLink;
+    }
+
     public void setDate(String[] date) {
         this.date = date;
     }

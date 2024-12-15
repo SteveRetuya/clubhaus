@@ -33,6 +33,7 @@ import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
 import java.util.List;
 
 /**
@@ -72,23 +73,25 @@ public class EditEventFragment extends Fragment {
 
         // Set Date Picker
         selectDateButton.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
             DatePickerDialog datePickerDialog = new DatePickerDialog(getContext(),
                     (view1, year, month, dayOfMonth) -> {
                         selectedDate = dayOfMonth + "/" + (month + 1) + "/" + year;
                         selectDateButton.setText(selectedDate);
                     },
-                    2024, 0, 1);
+                    calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
         });
 
         // Set Time Picker
         selectTimeButton.setOnClickListener(v -> {
+            Calendar calendar = Calendar.getInstance();
             TimePickerDialog timePickerDialog = new TimePickerDialog(getContext(),
                     (view1, hourOfDay, minute) -> {
                         selectedTime = hourOfDay + ":" + String.format("%02d", minute);
                         selectTimeButton.setText(selectedTime);
                     },
-                    12, 0, false);
+                    calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false);
             timePickerDialog.show();
         });
 
@@ -185,4 +188,3 @@ public class EditEventFragment extends Fragment {
     }
 
 }
-

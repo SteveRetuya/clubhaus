@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -30,7 +31,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Calendar;
+import java.util.Collections;
 import java.util.List;
 
 public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHolder> {
@@ -131,9 +135,8 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         });
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
     private void editEvent(Event event, View view) {
-        // For simplicity, open a dialog for editing event details
         Context context = view.getContext();
         AlertDialog.Builder builder = new AlertDialog.Builder(context);
         builder.setTitle("Edit Event");
@@ -158,39 +161,47 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
         interestInput.setText(event.getInterests());
         layout.addView(interestInput);
 
+        EditText urlInput = new EditText(context);
+        urlInput.setHint("Image URL");
+        urlInput.setText(event.getImageLink());
+        layout.addView(urlInput);
+
         EditText descriptionInput = new EditText(context);
         descriptionInput.setHint("Description");
         descriptionInput.setText(event.getDescription());
         layout.addView(descriptionInput);
 
-        // To store selected date and time
-        final String[] selectedDate = event.getDate();
-        final String[] selectedTime = event.getTime();
+        // To store selected dates and times
+        List<String> selectedDate = event.getDate_List() != null ? new ArrayList<>(event.getDate_List()) : new ArrayList<>();
+        List<String> selectedTime = event.getTime_List() != null ? new ArrayList<>(event.getTime_List()) : new ArrayList<>();
 
         // Show Date Picker Dialog
         Button datePickerButton = new Button(context);
-        datePickerButton.setText("Pick Date");
+        datePickerButton.setText(selectedDate.isEmpty() ? "Add Date" : "Dates: " + selectedDate.toString());
         layout.addView(datePickerButton);
 
         datePickerButton.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             DatePickerDialog datePickerDialog = new DatePickerDialog(context, (view1, year, month, dayOfMonth) -> {
-                selectedDate[0] = dayOfMonth + "/" + (month + 1) + "/" + year;
-                datePickerButton.setText("Date: " + selectedDate[0]);
+                String newDate = dayOfMonth + "/" + (month + 1) + "/" + year;
+                selectedDate.add(newDate);
+                datePickerButton.setText("Date: " + selectedDate.toString());
             }, calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DAY_OF_MONTH));
             datePickerDialog.show();
         });
 
         // Show Time Picker Dialog
         Button timePickerButton = new Button(context);
-        timePickerButton.setText("Pick Time");
+        timePickerButton.setText(selectedTime.isEmpty() ? "Add Time" : "Times: " + selectedTime.toString());
         layout.addView(timePickerButton);
+
         timePickerButton.setOnClickListener(v -> {
             Calendar calendar = Calendar.getInstance();
             TimePickerDialog timePickerDialog = new TimePickerDialog(context, (view12, hourOfDay, minute) -> {
-                selectedTime[0] = String.format("%02d:%02d", hourOfDay, minute);
-                timePickerButton.setText("Time: " + selectedTime[0]);
-            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), true);
+                String newTime = String.format("%02d:%02d", hourOfDay, minute);
+                selectedTime.add(newTime);
+                timePickerButton.setText("Time: " + selectedTime.toString());
+            }, calendar.get(Calendar.HOUR_OF_DAY), calendar.get(Calendar.MINUTE), false);
             timePickerDialog.show();
         });
 
@@ -198,21 +209,34 @@ public class EventAdapter extends RecyclerView.Adapter<EventAdapter.EventViewHol
 
         // Set Save button to update the event
         builder.setPositiveButton("Save", (dialog, which) -> {
-            // Update event details
+            String oldTitle = event.getTitle(); // Store old title in case it changes
             event.setTitle(titleInput.getText().toString());
             event.setLocation(locationInput.getText().toString());
             event.setDescription(descriptionInput.getText().toString());
             event.setInterests(interestInput.getText().toString());
-            event.setDate(selectedDate);
-            event.setTime(selectedTime);
+            event.setDate_List(selectedDate);
+            event.setTime_List(selectedTime);
+            event.setImageLink(urlInput.getText().toString());
 
-            // Notify RecyclerView to refresh the updated data
+            FirebaseDatabase database = FirebaseDatabase.getInstance("https://clubhaus-37b05-default-rtdb.asia-southeast1.firebasedatabase.app/");
+            DatabaseReference reference = database.getReference("events");
+
+            if (!oldTitle.equals(event.getTitle())) {
+                reference.child(oldTitle).removeValue();
+            }
+
+            reference.child(event.getTitle()).setValue(event).addOnCompleteListener(task -> {
+                if (task.isSuccessful()) {
+                    Toast.makeText(context, "Event updated successfully", Toast.LENGTH_SHORT).show();
+                } else {
+                    Toast.makeText(context, "Failed to update event", Toast.LENGTH_SHORT).show();
+                }
+            });
+
             notifyDataSetChanged();
         });
 
         builder.setNegativeButton("Cancel", (dialog, which) -> dialog.dismiss());
-
-        // Show the dialog
         builder.create().show();
     }
 
