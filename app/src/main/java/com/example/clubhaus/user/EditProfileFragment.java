@@ -108,7 +108,6 @@ public class EditProfileFragment extends Fragment {
                     changeUsername();
                     ((MainActivity) requireActivity()).goBackToProfileButton(v);
                 } else {
-                    Toast.makeText(view.getContext(), "No Changes Made", Toast.LENGTH_SHORT).show();
                     ((MainActivity) requireActivity()).goBackToProfileButton(v);
                 }
             }
