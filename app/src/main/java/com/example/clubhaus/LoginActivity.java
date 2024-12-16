@@ -49,7 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                         String realPassword = snapshot.child("password").getValue(String.class);
                         checkPassword(realPassword);
                     } else {
-                        Toast.makeText(LoginActivity.this, "Email does not exist", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(LoginActivity.this, "User does not exist", Toast.LENGTH_SHORT).show();
                     }
                 }
                 @Override
